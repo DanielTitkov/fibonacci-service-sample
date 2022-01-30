@@ -37,5 +37,4 @@ func GetFibonacciNumberHandlerFunc(c *gin.Context) {
 		"fibN":           fibN,
 		"elapsed":        elapsed,
 	})
-
 }

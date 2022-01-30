@@ -12,14 +12,20 @@ import (
 func main() {
 	log.Println("service starting...")
 
+	r := setupServer("templates/*.html")
+
+	log.Fatalln("failed to run server", r.Run("0.0.0.0:1123"))
+}
+
+func setupServer(templatesPath string) *gin.Engine {
 	r := gin.Default()
 	//nolint
 	r.SetTrustedProxies(nil)
 	r.Use(cors.Default())
-	r.LoadHTMLGlob("templates/*.html")
+	r.LoadHTMLGlob(templatesPath)
 	// TODO: add middleware to forcefully stop requests which are taking too long
 
 	r.GET("/", handler.GetFibonacciNumberHandlerFunc)
 
-	log.Fatalln("failed to run server", r.Run("0.0.0.0:1123"))
+	return r
 }
