@@ -1,9 +1,5 @@
 NAME := app
 
-# Docker
-DOCKER_APP_FILENAME ?= deployments/docker/Dockerfile
-DOCKER_COMPOSE_FILE ?= deployments/docker-compose/docker-compose.yml
-
 # Build
 BUILD_CMD ?= CGO_ENABLED=0 go build -o bin/${NAME} -ldflags '-v -w -s' ./cmd/
 
